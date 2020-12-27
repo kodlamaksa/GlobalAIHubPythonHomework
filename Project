@@ -1,0 +1,69 @@
+ogrenci_listesi=["Seyda Aygan","Ceyda Aydan","Seyma Kaya"]
+kurslar=["Python","Java","RPA","Word","Excel"]
+
+def notHesaplama():
+
+    notlar={"Vize":0,"Final":0,"Proje":0}
+
+    vize=int(input("\nVize notunu girin: "))
+    notlar["Vize"]= vize
+    final=int(input("\nFinal notunu girin: "))
+    notlar["Final"]= final
+    proje=int(input("\nProje notunu girin: "))
+    notlar["Proje"]=proje
+
+    sonuc = vize *0.3 + final*0.5 + proje*0.2
+    return sonuc
+
+def kursSecme():
+    kurs_girisi=input("\nAlmak istediğiniz kurslar nelerdir?: ")
+    kurs_listesi=list(kurs_girisi.split(","))
+
+    if len(kurs_listesi) >=3 and len(kurs_listesi)<=5:
+
+        for i in kurs_listesi:
+            if i not in kurslar:
+                print(f"Bu {i} kursu sistemde bulunmamaktadır.")
+
+        kurs=input("Notunu görmek istediğin kursu gir: ")
+
+        if kurs in kurs_listesi:
+
+            notun = notHesaplama()
+
+            if notun >=90:
+                return print(f"\n{kurs} notun AA,geçtin")
+            elif notun>=70 and notun<90:
+                return print(f"\n{kurs} notun BB,geçtin")
+            elif notun>=50 and notun<70:
+                return print(f"\n{kurs} notun CC,geçtin")
+            elif notun>=30 and notun<50:
+                return print(f"\n{kurs} notun DD,geçtin")
+            else:
+                return print(f"\n{kurs} notun FF,kaldın")
+
+        elif kurs not in kurs_listesi and kurs in kurslar:
+            return print(f"\n Bu {kurs} alamazsın.")
+
+        else:
+            return print(f"\nÖğrenci yönetim sisteminde bu {kurs} bulunmamaktadır.")
+    else:
+        return print(f"\nEn az üç ve en fazla beş kurs almalısın.Sınıfta başarısız oldun.")
+
+for i in range(3):
+
+    isim= input("İsminizi girin: ")
+    soyisim=input("Soyisminizi girin: ")
+
+    ogrenci_isim_soyisim = isim + " " + soyisim
+
+    if ogrenci_isim_soyisim in ogrenci_listesi:
+
+        print("\nÖğrenci yönetim sistemine hoş geldiniz{}".format(ogrenci_isim_soyisim))
+        kursSecme()
+        break
+
+    if i<=1:
+        print("Sisteme giriş yapılamadı.\n")
+    else:
+        print("Lütfen tekrar deneyiniz.")
